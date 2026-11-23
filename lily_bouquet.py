@@ -27,10 +27,9 @@ SUBJECT = "I love you."
 BLUE_LILY = [27, 33, 39, 45, 51, 75, 81, 117, 123, 159, 195]
 PINK_LILY = [125, 162, 168, 169, 175, 205, 211, 212, 218, 224]
 STAMEN = [178, 214, 220, 226]
-LEAF = [22, 28, 34, 35, 40, 70, 76, 112]
+STEM = [22, 28, 34, 35, 40, 70, 76, 112]
 WRAP = [60, 96, 102, 138, 180, 216, 223, 230]
 PETAL_MARKS = ".:-=+*#%@"
-LEAF_MARKS = ".:-=+*#"
 
 LIGHT = (-0.45, 0.72, 0.62)
 LIGHT_LENGTH = math.sqrt(sum(component * component for component in LIGHT))
@@ -69,23 +68,6 @@ def build_lily(flowers, center, palette, seed):
     flowers.append((center, palette, seed * 0.61))
 
 
-def build_leaf(points, base, direction, length, width, palette):
-    travel = normalize(direction)
-    normal_axis = normalize(cross(travel, (0.0, 0.0, 1.0)))
-    if abs(normal_axis[0]) + abs(normal_axis[1]) < 0.1:
-        normal_axis = (1.0, 0.0, 0.0)
-    for along_index in range(24):
-        t = along_index / 23
-        leaf_width = width * math.sin(math.pi * t) ** 0.8
-        for across_index in range(-4, 5):
-            w = across_index / 4
-            pos = add(base, scale_vector(travel, length * t))
-            pos = add(pos, scale_vector(normal_axis, leaf_width * w))
-            pos = add(pos, (0.0, 0.035 * math.sin(math.pi * t), 0.0))
-            normal = normalize(add(normal_axis, (0.0, 0.15, 0.15 * w)))
-            add_point(points, pos, normal, palette, -0.08 if abs(w) > 0.8 else 0.0, True, None)
-
-
 def build_scene():
     points = []
     flowers = []
@@ -121,20 +103,7 @@ def build_scene():
                 neck[1] + (head[1] - neck[1]) * t,
                 neck[2] + (head[2] - neck[2]) * t,
             )
-            add_point(points, position, (0.2, 0.6, 0.2), LEAF, -0.04, True, "|")
-
-        leaf_t = 0.30 + 0.035 * (index % 2)
-        leaf_base = (
-            neck[0] + (head[0] - neck[0]) * leaf_t,
-            neck[1] + (head[1] - neck[1]) * leaf_t,
-            neck[2] + (head[2] - neck[2]) * leaf_t,
-        )
-        outward = (math.sin(azimuth), 0.0, math.cos(azimuth))
-        leaf_direction = normalize(add(scale_vector(outward, 0.78), (0.0, 0.58, 0.0)))
-        build_leaf(points, leaf_base, leaf_direction, 0.32, 0.065, LEAF)
-        if index % 3 == 1:
-            other_direction = normalize(add(scale_vector(outward, -0.72), (0.0, 0.48, 0.0)))
-            build_leaf(points, leaf_base, other_direction, 0.27, 0.055, LEAF)
+            add_point(points, position, (0.2, 0.6, 0.2), STEM, -0.04, True, "|")
 
         build_lily(flowers, head, palette, index)
 
@@ -199,10 +168,7 @@ def render_frame(points, flowers, angle, cols, rows, home_cursor=False):
         if two_sided and nx * LIGHT[0] + ny * LIGHT[1] + nz * LIGHT[2] < 0:
             brightness = 0.34 + 0.24 * abs(nx * LIGHT[0] + ny * LIGHT[1] + nz * LIGHT[2]) + tone
         brightness = min(0.999, max(0.0, brightness))
-        if palette is LEAF:
-            ramp = LEAF_MARKS
-        else:
-            ramp = PETAL_MARKS
+        ramp = PETAL_MARKS
         if override == "P":
             char = ramp[int(brightness * len(ramp))]
         else:
