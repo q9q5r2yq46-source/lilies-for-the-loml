@@ -43,22 +43,6 @@ def normalize(vector: tuple[float, float, float]) -> tuple[float, float, float]:
     return tuple(component / length for component in vector)
 
 
-def add(a: tuple[float, float, float], b: tuple[float, float, float]) -> tuple[float, float, float]:
-    return (a[0] + b[0], a[1] + b[1], a[2] + b[2])
-
-
-def scale_vector(vector: tuple[float, float, float], amount: float) -> tuple[float, float, float]:
-    return (vector[0] * amount, vector[1] * amount, vector[2] * amount)
-
-
-def cross(a: tuple[float, float, float], b: tuple[float, float, float]) -> tuple[float, float, float]:
-    return (
-        a[1] * b[2] - a[2] * b[1],
-        a[2] * b[0] - a[0] * b[2],
-        a[0] * b[1] - a[1] * b[0],
-    )
-
-
 def add_point(points, position, normal, palette, tone=0.0, two_sided=True, character=None):
     points.append((position, normal, palette, tone, two_sided, character))
 
