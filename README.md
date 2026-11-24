@@ -2,9 +2,11 @@
 
 A rotating 360-degree terminal bouquet with twelve lilies (six blue and six pink). The flower heads are scattered at different heights and depths; baby's breath and the ribbon are omitted so the lilies stand out.
 
-The card text is kept simple:
+The postcard text is kept simple:
 
-> From Seth to Megan,
+> From Seth
+>
+> To Megan
 >
 > I love you.
 
@@ -32,4 +34,3 @@ Use a reasonably wide terminal window for the best layout. The animation uses AN
 
 The stems and wrapping paper rotate as 3D points. Twelve six-petal lily heads travel around the bouquet and face the viewer as they come around, with gold anthers to make the flower centers distinct. The full rotation reveals flowers from every side. Leaves are omitted for a cleaner silhouette.
 
-This is a fresh implementation inspired by the terminal-rendering idea in [Ascii Flower Bouquet](https://github.com/alishsharma17/Ascii-Flower-Bouquet-). It does not use that project's code or artwork.
