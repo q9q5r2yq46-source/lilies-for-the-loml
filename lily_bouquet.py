@@ -21,7 +21,8 @@ CAMERA_DISTANCE = 4.0
 TILT = 0.25
 PIVOT_Y = 0.2
 
-FROM_LINE = "From Seth to Megan,"
+FROM_LINE = "From: Seth"
+TO_LINE = "To: Megan"
 SUBJECT = "I love you."
 
 BLUE_LILY = [27, 33, 39, 45, 51, 75, 81, 117, 123, 159, 195]
@@ -202,12 +203,17 @@ def render_frame(points, flowers, angle, cols, rows, home_cursor=False):
                 row = int(flower_y - math.sin(stamen_angle) * radius_y * length)
                 plot(col, row, depth + 0.04, "*" if length == 0.40 else ".", STAMEN[-1] if length == 0.40 else STAMEN[1])
 
-    # Keep the sender line quiet and readable above the moving illustration.
+    # Place the sender and recipient as two postcard lines in the upper left.
     sender_color = 218
     for index, character in enumerate(FROM_LINE):
         if 2 + index < cols:
             chars[0][2 + index] = character
             colors[0][2 + index] = sender_color
+    recipient_start = 2
+    for index, character in enumerate(TO_LINE):
+        if recipient_start + index < cols:
+            chars[1][recipient_start + index] = character
+            colors[1][recipient_start + index] = sender_color
 
     # The short subject sits beneath the bouquet, centered like a card caption.
     start = max(0, (cols - len(SUBJECT)) // 2)
