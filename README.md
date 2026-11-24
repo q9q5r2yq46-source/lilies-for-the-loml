@@ -1,6 +1,6 @@
 # Lily Bouquet for Megan
 
-A rotating 360-degree terminal bouquet with twelve lilies (six blue and six pink) and baby's breath because she loves those.
+A terminal bouquet with twelve lilies (six blue and six pink) and baby's breath because she loves those.
 The postcard text is kept simple:
 
 > From Seth
