@@ -1,7 +1,6 @@
-# A Lily Bouquet for Megan
+# Lily Bouquet for Megan
 
-A rotating 360-degree terminal bouquet with twelve lilies (six blue and six pink). The flower heads are scattered at different heights and depths; baby's breath and the ribbon are omitted so the lilies stand out.
-
+A rotating 360-degree terminal bouquet with twelve lilies (six blue and six pink) and baby's breath because she loves those.
 The postcard text is kept simple:
 
 > From Seth
@@ -25,10 +24,6 @@ Run the rotating bouquet:
 ```bash
 python3 lily_bouquet.py
 ```
-
-Press `Ctrl+C` to stop the animation. On Windows, use `python` in place of `python3` if that is how Python is installed.
-
-Use a reasonably wide terminal window for the best layout. The animation uses ANSI 256-color terminal sequences.
 
 ## How it is made
 
